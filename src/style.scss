@@ -1,9 +1,6 @@
-$color: orange;
-
-body {
-  background: $color;
-}
+@import "assets/fonts/fonts.css";
 
 p {
-  display: flex;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }

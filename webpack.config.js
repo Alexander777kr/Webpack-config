@@ -45,9 +45,28 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: ["file-loader"],
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "assets",
+            },
+          },
+        ],
       },
+      {
+        test: /(ttf|woff2?)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "assets",
+            },
+          },
+        ],
+      },
+
       {
         test: /\.s[ac]ss$/i,
         use: [
