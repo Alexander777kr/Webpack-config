@@ -5,6 +5,7 @@ import core from "jquery-core/core";
 
 import "jquery-ui-css/progressbar.css";
 import progressbar from "jquery-ui/progressbar";
+import "./style.css";
 
 $(function () {
   $("#progressbar").progressbar({

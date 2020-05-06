@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const autoprefixer = require("autoprefixer");
 
 const PAGES_DIR = path.join(__dirname, "src/pug/pages/");
 const PAGES = fs
@@ -12,9 +13,10 @@ const PAGES = fs
 console.log(PAGES);
 
 module.exports = {
+  context: path.join(__dirname, "src"),
   mode: "development",
   entry: {
-    main: "./src/index.js",
+    main: "./index.js",
   },
   output: {
     filename: "[name].[contenthash].js",
@@ -31,7 +33,16 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: [autoprefixer()],
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -44,6 +55,12 @@ module.exports = {
           "style-loader",
           // Translates CSS into CommonJS
           "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: [autoprefixer()],
+            },
+          },
           // Compiles Sass to CSS
           "sass-loader",
         ],
